@@ -1,44 +1,66 @@
+Statements -> null
 Program -> Function Functions
 Functions -> Function Functions
+Function -> Statement Statements
 Functions -> null
 Function -> Type main ( AllParams ) Block
-Function -> Type Id ( AllParams ) Block
+Function -> Type id ( AllParams ) Block
 AllParams -> null
 AllParams -> Param Params
 Params -> , Param Params
 Params -> null
-Param -> Type Id
+Param -> Type id
+Param -> id
+Param -> Type arrayname [ ]
+Param -> arrayname [ ]
 Type -> int
-Type -> double
-Type -> var
 Type -> let
-Type -> void
-Type -> char
-Type -> string
 Block -> { Statements }
 Statements -> Statement Statements
-Statements -> null
-Statement -> Block
 Statement -> LocalVarDecl
 Statement -> AssignStmt
 Statement -> ReturnStmt
 Statement -> IfStmt
-Statement -> null
+Statement -> ForStmt
+Statement -> FunctionCallStmt
+Statement -> BoolStmt
+IfStmt -> if ( BoolStmt ) Block
+AssignStmt -> ++ id ;
+AssignStmt -> -- id ;
+AssignStmt -> id ++ ;
+AssignStmt -> id -- ;
+AssignStmt -> ++ id
+AssignStmt -> -- id
+AssignStmt -> id ++
+AssignStmt -> id --
+BoolStmt -> BoolV CompareSign BoolV
+BoolV -> id 
+BoolV -> Array
+CompareSign -> >
+CompareSign -> <
+CompareSign -> >=
+CompareSign -> <=
+CompareSign -> ==
+CompareSign -> !=
 Expression -> ( Expression )
-Expression -> PrimaryExpr MultiplicativeExprs
+Expression -> id
 LocalVarDecl -> Type id ;
+LocalVarDecl -> Type id = id ;
+LocalVarDecl -> Type id = Expression ;
+LocalVarDecl -> Type id 
+LocalVarDecl -> Type id = id 
+LocalVarDecl -> Type id = Expression 
+LocalVarDecl -> Type id = FunctionCallStmt
+LocalVarDecl -> Type Array = ArrayInit ;
+Array -> arrayname Arrs
+Arrs -> [ id ] Arrs
+Arrs -> null 
+ArrayInit -> { ids }
+ids -> id ids
+ids -> , id ids
+ids -> null
 AssignStmt -> id = Expression ;
 ReturnStmt -> return Expression ;
-MultiplicativeExprs -> + Expression
-MultiplicativeExprs -> = Expression
-MultiplicativeExprs -> * Expression
-MultiplicativeExprs -> / Expression
-MultiplicativeExprs -> % Expression
-MultiplicativeExprs -> PrimaryExpr
-MultiplicativeExprs -> null
-PrimaryExpr -> id
-PrimaryExpr -> Number
-PrimaryExpr -> [ ' id ' ]
-PrimaryExpr -> [ ' Number ' ]
-
-
+ReturnStmt -> return FunctionCallStmt
+ForStmt -> for ( LocalVarDecl ; BoolStmt ; Statement ) Block
+FunctionCallStmt -> id ( AllParams ) ;
